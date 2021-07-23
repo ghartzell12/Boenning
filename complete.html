@@ -1,0 +1,21 @@
+<html>
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="{{ url_for('home') }}">G Hartzell Boenning App</a>
+        <a class="Lender Research" href="{{ url_for('lender') }}" style = "color:black;">Lender Research</a>
+        <a class="Excel Formatting" href="{{ url_for('rc') }}" style = "color:black;">Excel Formatter</a>
+        </nav>
+    </header>
+    <div style="float:center; text-align:center;">
+    <h1> Saved under file name {{ name }} </h1>
+    <div class = "container" style = "text-align:center; align:center; float: center; padding-top: 100px;">
+    <button type="button" class="btn btn-primary"><a  href = "{{ url_for('home') }}" style = "color:white;padding-top:100px; " >Go Home</a></button>
+    </div>
+    </div>
+</body>
+</html>
