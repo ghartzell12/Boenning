@@ -29,32 +29,8 @@ import os
 import io
 import smtplib
 from gav import excel_formatter
-import xlrd
 
 app = Flask(__name__)
-
-
-def open_xls_as_xlsx(filename):
-    # first open using xlrd
-    book = xlrd.open_workbook(filename)
-    index = 0
-    nrows, ncols = 0, 0
-    while nrows * ncols == 0:
-        sheet = book.sheet_by_index(index)
-        nrows = sheet.nrows
-        ncols = sheet.ncols
-        index += 1
-
-    # prepare a xlsx sheet
-    book1 = Workbook()
-    sheet1 = book1.get_active_sheet()
-
-    for row in xrange(0, nrows):
-        for col in xrange(0, ncols):
-            sheet1.cell(row=row, column=col).value = sheet.cell_value(row, col)
-
-    return book1
-
 
 def run(query, req, keywords, results):
     query2 = query + "bank"
@@ -325,8 +301,8 @@ def rc():
         if request.files:
             print("IF")
             filename = 'boenning'
-            uploaded_file = request.files["filename"].read()
-            wb = load_workbook(open_xls_as_xlsx(uploaded_file))
+            uploaded_file = request.files["filename"]
+            wb = load_workbook(uploaded_file)
         else:
             return(render_template("otherproj.html"))
         print("here")
@@ -335,4 +311,4 @@ def rc():
     return(render_template("otherproj.html"))
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug = False,host = '0.0.0.0')
